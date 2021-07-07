@@ -3,7 +3,7 @@ const session = require('express-session')
 const fs = require("fs");
 const path = require('path');
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
 app.use(session({
   cookie: {expires: 1800000 },
@@ -59,4 +59,4 @@ app.post('/authenticate'
     }
   })
 
-app.listen(port, () => { console.log(`Website is running on ${port}`) });
+app.listen(PORT, () => { console.log(`Website is running on ${PORT}`) });
