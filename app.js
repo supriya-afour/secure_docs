@@ -1,12 +1,16 @@
 const express = require('express');
-const session = require('express-session')
+const session = require('express-session');
+const { v4 } = require('uuid');
 const fs = require("fs");
 const path = require('path');
 const app = express();
 const PORT = 3000;
 
 app.use(session({
-  cookie: {expires: 1800000 },
+  genid: function(req){
+    return v4();
+  },
+  cookie: {expires: 1800000},
   secret: 'secret_key',
   name: 'uniqueSessionID',
   saveUninitialized: false
@@ -48,15 +52,15 @@ app.post('/authenticate'
       res.sendStatus(401)
   }
   , (req, res) => {
-    const header = req.header('Referer');
-    req.session.loggedIn = true
-    req.session.username = res.locals.username
-    console.log(req.session)
-    if(header.includes('/docs/')){
-      res.redirect(header);
-    }else{
-      res.redirect("/")
-    }
+      const header = req.header('Referer');
+      req.session.loggedIn = true
+      req.session.username = res.locals.username
+      console.log(req.session)
+      if(header.includes('/docs/')){
+        res.redirect(header);
+      }else{
+        res.redirect("/")
+      }
   })
 
 app.listen(PORT, () => { console.log(`Website is running on ${PORT}`) });
