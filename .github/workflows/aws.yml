@@ -1,4 +1,4 @@
-name: Deploy to Amazon EC2
+name: Automate Deploy to Amazon EC2 from Github
 
 on:
   push:
