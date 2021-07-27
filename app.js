@@ -64,4 +64,3 @@ app.post('/authenticate'
   })
 
 app.listen(PORT, () => { console.log(`Website is running on ${PORT}`) });
-
