@@ -23,7 +23,7 @@ os: linux
 #   "files" section altogether. A blank or incomplete "files" section
 #   may cause associated deployments to fail.
 files:
-  - source: .
+  - source: /
     destination: /home/ubuntu/secure_docs
 # For deployments to Amazon Linux, Ubuntu Server, or RHEL instances,
 #   you can specify a "permissions" 
@@ -53,7 +53,7 @@ files:
 # If you are not running any commands on the Amazon EC2 instance, then remove 
 #   the "hooks" section altogether. A blank or incomplete "hooks" section
 #   may cause associated deployments to fail.
-# hooks:
+hooks:
 # For each deployment lifecycle event, specify multiple "location" entries 
 #   if you want to run multiple scripts during that event.
 # You can specify "timeout" as the number of seconds to wait until failing the deployment 
@@ -77,19 +77,19 @@ files:
 # During the ApplicationStop deployment lifecycle event, run the commands 
 #   in the script specified in "location" starting from the root of the 
 #   revision's file bundle.
-  # ApplicationStop:
-  #   - location: 
-  #     timeout:
-  #     runas:
+  ApplicationStop:
+    - location: scripts/application_stop.sh
+      timeout: 300
+      runas: ubuntu
   #   - location: 
   #     timeout:
   #     runas: 
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   # BeforeInstall:
-  #   - location: 
-  #     timeout:
-  #     runas: 
+  #   - location: scripts/before_install.sh
+  #     timeout: 300
+  #     runas: ubuntu
   #   - location: 
   #     timeout:
   #     runas:
@@ -104,10 +104,10 @@ files:
   #     runas:
 # During the ApplicationStart deployment lifecycle event, run the commands 
 #   in the script specified in "location".
-  # ApplicationStart:
-  #   - location:     
-  #     timeout: 
-  #     runas:
+  ApplicationStart:
+    - location: scripts/application_start.sh 
+      timeout: 300
+      runas: ubuntu
   #   - location: 
   #     timeout:
   #     runas:
