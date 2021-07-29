@@ -10,5 +10,4 @@ cd /home/ubuntu/secure_docs
 npm install
 
 # start our node app in the background using pm2 
-
 sudo pm2 start 'npm start'
