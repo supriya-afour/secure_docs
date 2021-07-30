@@ -1,4 +1,4 @@
-name: Automate Deploy to Amazon EC2 from Github
+name: Automate Deploy to Amazon EC2 using Github actions
 
 on:
   push:
@@ -7,24 +7,22 @@ on:
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
-    environment: AWS_ACCESS_DETAILS
     steps:
       # Step 1
       - name: Checkout to repo
         uses: actions/checkout@v2
-      # Step 2
-      - name: Install all dependencies
-        run: npm install
-      # Step 3
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+      # # Step 2
+      # - name: Install all dependencies
+      #   run: npm install
+      # # Step 3
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ap-south-1
 
   continuous-deployment:
-    environment: AWS_ACCESS_DETAILS
     runs-on: ubuntu-latest
     needs: [continuous-integration]
     if: github.ref == 'refs/heads/master'
