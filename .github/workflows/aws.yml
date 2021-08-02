@@ -39,7 +39,7 @@ jobs:
         id: deploy
         run: |
           aws deploy create-deployment \
-            --application-name secureWebsiteCodeDeploy \
-            --deployment-group-name secureWebsiteCodeDeployGroup \
+            --application-name secureWebsiteApp \
+            --deployment-group-name secureWebsiteGroup \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
