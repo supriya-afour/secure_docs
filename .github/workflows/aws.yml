@@ -11,9 +11,9 @@ jobs:
       # Step 1
       - name: Checkout to repo
         uses: actions/checkout@v2
-      # Step 2
-      - name: Install all dependencies
-        run: npm install
+      # # Step 2
+      # - name: Install all dependencies
+      #   run: npm install
       # Step 3
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
